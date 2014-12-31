@@ -30,6 +30,11 @@ class HolidaysTests < Test::Unit::TestCase
     assert_equal 0, holidays.length
   end
 
+  def test_in
+    holidays = Holidays.in(2008, :ca)
+    assert_equal 10, holidays.length
+  end
+
   def test_full_week
     ## Full weeks:
     # Try with a Monday

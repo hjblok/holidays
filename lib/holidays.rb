@@ -179,6 +179,21 @@ module Holidays
     holidays.sort{|a, b| a[:date] <=> b[:date] }
   end
 
+  # Get all holidays occuring in a certain year.
+  #
+  # Returns an array of hashes or nil.
+  #
+  # [<tt>year</tt>]     Integer.
+  # [<tt>options</tt>]  One or more region symbols, <tt>:informal</tt> and/or <tt>:observed</tt>.
+  #
+  # ==== Example
+  #   Holidays.in(2008, :ca, :us)
+  #   => [{:name => 'Canada Day', :regions => [:ca]...}
+  #       {:name => 'Independence Day'', :regions => [:us], ...}]
+  def self.in(year, *options)
+    between(Date.civil(year, 1, 1), Date.civil(year, 12, 31), *options)
+  end
+
   # Merge a new set of definitions into the Holidays module.
   #
   # This method is automatically called when including holiday definition
